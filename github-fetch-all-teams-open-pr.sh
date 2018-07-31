@@ -32,5 +32,5 @@ for REPO in $REPOS; do
   fi
 done
 
-jq -s '[.[]]|flatten' $TEMP_DIR/*.json | jq 'sort_by(.created)' | jq '.[] | "• " + .user + " " + .title + " (" + .url + ")"' | cut -f2 -d"\"" | cut -f1 -d"\""
+jq -s '[.[]]|flatten' $TEMP_DIR/*.json | jq 'sort_by(.created)' | jq '.[] | "• " + .user + " " + .title + " (" + .url + ")"' | cut -f2 -d"\"" | cut -f1 -d"\"" | grep -v "WIP"
 rm -rf $TEMP_DIR
